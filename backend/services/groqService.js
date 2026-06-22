@@ -378,7 +378,7 @@ async function callPriyaAgentic(sessionId, message, opts = {}) {
   // Skipped if the caller's turn actually answered it (save-guard above set caller_type)
   // or if they asked a question (let the model handle that).
   if (agentTools.getMissingFields({ collected })[0] === 'caller_type' && !isQuestionLike(message)) {
-    const reply = 'Lovely! Am I speaking with the student, or a parent?'
+    const reply = 'Am I speaking with the student, or a parent?'
     const updatedHistory = [...(session.agent_messages || []), { role: 'user', content: message }, { role: 'assistant', content: reply }].slice(-AGENT_HISTORY_LIMIT)
     sessionStore.update(sessionId, { agent_messages: updatedHistory, collected })
     const { step, step_index } = agentTools.deriveStep({ collected })

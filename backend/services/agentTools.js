@@ -63,6 +63,26 @@ function cleanTextValue(raw) {
   return s.length ? s : null
 }
 
+// Filler/lead-in tokens the STT scatters around a spoken name. "my full name is X"
+// comes through as English, or garbled across scripts depending on the mis-detect:
+// "నా పేరు X", "ना फुल ले मुझसे X", "ନା ଫୁଲ୍ ନେମ୍ ଅଛି X". We strip these from anywhere
+// and keep the real name (the remaining word/s — usually the last one or two).
+const NAME_FILLER = new Set([
+  'my', 'full', 'name', 'is', 'the', 'a', 'this', 'side',
+  'నా', 'మా', 'నీ', 'మై', 'పేరు', 'నేమ్', 'వచ్చి', 'అని', 'ఫుల్', 'నేమ',
+  'ना', 'मेरा', 'मेरी', 'मैं', 'नाम', 'नेम', 'है', 'फुल', 'फूल', 'ले', 'मुझे', 'मुझसे', 'से', 'नेम्',
+  'ନା', 'ଫୁଲ୍', 'ନେମ୍', 'ଅଛି', 'ନାମ', 'ମୋ', 'ମୋର',
+])
+function extractName(message) {
+  const v = cleanTextValue(message)
+  if (!v) return null
+  const norm = (t) => t.toLowerCase().replace(/[.,!?।]/g, '')
+  const toks = v.split(/\s+/).filter(t => t && !NAME_FILLER.has(norm(t)))
+  // What's left after dropping filler is the name; if it was ALL filler, keep the last word.
+  const picked = (toks.length ? toks : v.split(/\s+/)).slice(-2).join(' ').trim()
+  return picked.length >= 2 ? picked : null
+}
+
 // Best-effort value for the field currently being collected, from a spoken turn.
 // Used by the save-guard so the agent never drops an answer and re-asks — AND so
 // simple data-collection turns resolve in a single Groq call instead of two (a
@@ -77,7 +97,7 @@ function valueForPendingField(field, message) {
     return v && v.length >= 2 ? v : null
   }
   if (field === 'student_name' || field === 'parent_name') {
-    const v = cleanTextValue(message)
+    const v = extractName(message)
     if (!v || v.length < 2) return null
     // "I am a student/parent" is a caller_type answer, not a name — don't save it.
     if (/\b(student|parent|father|mother|mom|dad|guardian)\b/i.test(v) ||

@@ -1,5 +1,187 @@
 [
   {
+    "session_id": "5549e75a-86f2-4d95-a9b5-f15453ab6d0c",
+    "phone": "+918249776759",
+    "name": "ना फुल ले मुझसे कार्तिक",
+    "started_at": "2026-06-22T12:33:53.063Z",
+    "duration": 109,
+    "steps_completed": 4,
+    "status": "completed",
+    "detected_language": "te-IN",
+    "collected": {
+      "name": null,
+      "marks_10": "65%",
+      "marks_inter": "95%",
+      "interest": null,
+      "location": null,
+      "caller_type": "student",
+      "student_name": "ना फुल ले मुझसे कार्तिक"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hi! I am Priya from Aditya University. Which language are you comfortable speaking in — Telugu, English, Hindi, or any other?",
+        "timestamp": "2026-06-22T12:34:13.761Z"
+      },
+      {
+        "role": "Student",
+        "text": "తెలుగు.",
+        "timestamp": "2026-06-22T12:34:16.462Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Lovely! Am I speaking with the student, or a parent?",
+        "timestamp": "2026-06-22T12:34:16.473Z"
+      },
+      {
+        "role": "Student",
+        "text": "మీరు స్టూడెంట్ తో మాట్లాడుతున్నారు",
+        "timestamp": "2026-06-22T12:34:25.795Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great! I understand you're a keen student. What's your full name, please?",
+        "timestamp": "2026-06-22T12:34:27.584Z"
+      },
+      {
+        "role": "Student",
+        "text": "ना फुल ले मुझसे कार्तिक",
+        "timestamp": "2026-06-22T12:34:37.004Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Thank you, ना फुल ले मुझसे कार्तिक. Let's move on to your marks from 10th standard. How did it go?",
+        "timestamp": "2026-06-22T12:34:38.887Z"
+      },
+      {
+        "role": "Student",
+        "text": "ନା ଟେନ୍ଥ ମାର୍କସ ଅଛି ଲାଇକ 65%",
+        "timestamp": "2026-06-22T12:34:55.842Z"
+      },
+      {
+        "role": "Priya",
+        "text": "That's a strong foundation, ना फुल ले मुझसे कार्तिक. Moving on to your 12th standard marks: How did that go?",
+        "timestamp": "2026-06-22T12:34:57.789Z"
+      },
+      {
+        "role": "Student",
+        "text": "No, 12th marks ache like 95.",
+        "timestamp": "2026-06-22T12:35:13.471Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Fantastic! With a score of 95%, you're well-prepared for your chosen course. Now, what kind of course are you interested in pursuing?",
+        "timestamp": "2026-06-22T12:35:15.204Z"
+      },
+      {
+        "role": "Student",
+        "text": "ఇప్పుడు",
+        "timestamp": "2026-06-22T12:35:26.343Z"
+      },
+      {
+        "role": "Priya",
+        "text": "What courses are you interested in, ना फुल ले मुझसे कार्तिक?",
+        "timestamp": "2026-06-22T12:35:27.794Z"
+      },
+      {
+        "role": "Student",
+        "text": "నాకు బీబీఎల్ ఇంట్రెస్ట్ ఉంది",
+        "timestamp": "2026-06-22T12:35:41.607Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Got it, ना फुल ले मुझसे कार्तिक. For the B.Tech course, we have a few departments to choose from. Which one interests you most?",
+        "timestamp": "2026-06-22T12:35:43.315Z"
+      }
+    ]
+  },
+  {
+    "session_id": "bca5f6e6-7465-4a77-9f4e-bcccd3423eed",
+    "phone": "+918249776759",
+    "name": "ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ",
+    "started_at": "2026-06-22T12:27:44.885Z",
+    "duration": 130,
+    "steps_completed": 3,
+    "status": "completed",
+    "detected_language": "te-IN",
+    "collected": {
+      "name": null,
+      "marks_10": "95%",
+      "marks_inter": null,
+      "interest": null,
+      "location": null,
+      "caller_type": "student",
+      "student_name": "ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hi! I am Priya from Aditya University. Which language are you comfortable speaking in — Telugu, English, Hindi, or any other?",
+        "timestamp": "2026-06-22T12:28:03.915Z"
+      },
+      {
+        "role": "Student",
+        "text": "తెలుగు",
+        "timestamp": "2026-06-22T12:28:09.861Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Lovely! Am I speaking with the student, or a parent?",
+        "timestamp": "2026-06-22T12:28:09.869Z"
+      },
+      {
+        "role": "Student",
+        "text": "మీరు స్టూడెంట్ తో మాట్లాడుతున్నాను",
+        "timestamp": "2026-06-22T12:28:21.061Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Good to hear you're a student! What's your full name, please?",
+        "timestamp": "2026-06-22T12:28:22.817Z"
+      },
+      {
+        "role": "Student",
+        "text": "ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ",
+        "timestamp": "2026-06-22T12:28:41.264Z"
+      },
+      {
+        "role": "Priya",
+        "text": "That's a beautiful name, ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ! How are your marks in 10th standard?",
+        "timestamp": "2026-06-22T12:28:43.880Z"
+      },
+      {
+        "role": "Student",
+        "text": "నా టెన్త్ స్టాండర్డ్ లో మార్క్స్ వచ్చి లైక్",
+        "timestamp": "2026-06-22T12:29:01.623Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Got it, thank you. Now, could you please share your marks in the 12th standard?",
+        "timestamp": "2026-06-22T12:29:02.461Z"
+      },
+      {
+        "role": "Student",
+        "text": "ହୁଁ, 12th ଷ୍ଟାଣ୍ଡାର୍ଡ ମାର୍କସ ଅଛି ଲାଇକ 95%।",
+        "timestamp": "2026-06-22T12:29:21.298Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Fantastic, ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ! 95% in the 10th standard is a great achievement. What field of study are you interested in?",
+        "timestamp": "2026-06-22T12:29:24.248Z"
+      },
+      {
+        "role": "Student",
+        "text": "నేను బీటెక్ కోర్సులో ఇంట్రెస్ట్ ఉన్నది నాన్న.",
+        "timestamp": "2026-06-22T12:29:43.802Z"
+      },
+      {
+        "role": "Priya",
+        "text": "That's wonderful, ନା ଫୁଲ୍ ନେମ୍ ଅଛି କାର୍ତ୍ତିକ! Do you have a preference for the B.Tech course in any particular department, such as Computer Science or Electrical Engineering?",
+        "timestamp": "2026-06-22T12:29:46.275Z"
+      }
+    ]
+  },
+  {
     "session_id": "f631dc73-ce3b-4e4c-9e2e-a51a558cc6e7",
     "phone": "+918249776759",
     "name": "का फुल नेम है कार्तिक",
@@ -2328,25 +2510,5 @@
     "steps_completed": 2,
     "status": "completed",
     "detected_language": "te-IN"
-  },
-  {
-    "session_id": "ec63e601-fd26-4786-b470-f85836f0edbb",
-    "phone": "+918249776759",
-    "name": "Karthik",
-    "started_at": "2026-06-04T19:09:13.584Z",
-    "duration": 167,
-    "steps_completed": 11,
-    "status": "completed",
-    "detected_language": "te-IN"
-  },
-  {
-    "session_id": "a582d52b-a8a3-4cd0-998c-5ecea50f8184",
-    "phone": "+918249776759",
-    "name": "from the Odisha",
-    "started_at": "2026-06-04T19:06:01.008Z",
-    "duration": 166,
-    "steps_completed": 11,
-    "status": "completed",
-    "detected_language": "pa-IN"
   }
 ]
