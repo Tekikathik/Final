@@ -1,0 +1,6 @@
+# LiveKit Agents + the Sarvam (STT/TTS) and OpenAI-compatible (Groq/Ollama) plugins.
+# silero is included as a VAD fallback; with turn_detection="stt" Sarvam handles it.
+livekit-agents[sarvam,silero,openai]
+python-dotenv
+# Async HTTP — the reporter POSTs live transcript/collected/status to the dashboard.
+aiohttp
