@@ -30,7 +30,29 @@ const ENGAGEMENT_LABEL = {
   counselling:  'counselling session',
 }
 
+// ── Placement proof — the hook that attracts the student to join ─────────────
+// Verified 2026 numbers from the university knowledge base (data/knowledgeBase.js).
+// Update here when the placement season's figures are refreshed.
+const PLACEMENT_PROOF = {
+  header: '🏆 *Why students choose Aditya — 2026 placements:*',
+  common: [
+    '✅ 3,832+ students placed (and counting)',
+    '💰 Highest package: ₹27 LPA — Walmart (6 offers)',
+    '🌏 International offers up to ₹39.6 LPA (Japan)',
+  ],
+  // Extra proof line when the program is tech (CSE/AIML/DS/IT) — the fiercest segment.
+  tech: '💻 Infosys: 181 offers · Internships at Google & Amazon (₹1L+/month stipends)',
+  generic: '🤝 500+ partner companies · Career Development Centre with mock interviews & training',
+}
+
+function placementProofLines(collected = {}) {
+  const program = String(collected.program_of_interest || collected.interest || '')
+  const isTech = /cse|computer|ai|ml|data|it|software/i.test(program)
+  return [PLACEMENT_PROOF.header, ...PLACEMENT_PROOF.common, isTech ? PLACEMENT_PROOF.tech : PLACEMENT_PROOF.generic]
+}
+
 // Compose the greeting. With a booked slot → confirmation; without → warm thank-you.
+// Always ends with the placement proof block + an invitation (the attractor).
 function composeMessage(collected = {}, fallbackName = '') {
   const name = collected.student_name || collected.name || fallbackName || 'there'
   const slot = collected.visit_datetime || collected.booked_time || ''
@@ -45,6 +67,8 @@ function composeMessage(collected = {}, fallbackName = '') {
   else if (what)         lines.push(`We've noted your interest in a ${what} — our admissions team will reach out shortly to fix a convenient time.`)
   else                   lines.push(`Our admissions team is here whenever you're ready with the next step.`)
   if (collected.program_of_interest) lines.push(`Program of interest: ${collected.program_of_interest}.`)
+  lines.push('', ...placementProofLines(collected), '')
+  lines.push(`Come see the campus for yourself — reply here or call us anytime. 🎯`)
   lines.push(`— Aditya University Admissions`)
   return lines.join('\n')
 }
@@ -65,7 +89,12 @@ async function sendPostCallFollowUp(session) {
   if (!to) return { status: 'skipped', detail: 'no phone on session' }
 
   const message = composeMessage(collected, session?.name)
-  const result = await send({ channel: CHANNEL, to, message, subject: 'Your Aditya University booking' })
+  // Optional placement-proof poster attached to the WhatsApp (set a public image
+  // URL in PLACEMENT_PROOF_MEDIA_URL; ignored on SMS/email).
+  const result = await send({
+    channel: CHANNEL, to, message, subject: 'Your Aditya University booking',
+    mediaUrl: process.env.PLACEMENT_PROOF_MEDIA_URL || undefined,
+  })
   console.log(`[followup] ${result.channel}/${result.status} → ${to}${result.detail ? ` (${result.detail})` : ''}`)
   return result
 }

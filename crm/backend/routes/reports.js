@@ -40,6 +40,13 @@ function reportFromCall(call) {
   const disposition = call.disposition || col.call_outcome || null
   const course = [col.program_of_interest || col.interest, col.specialization]
     .filter(Boolean).join(' — ') || '—'
+  // Honest fallback when the AI summary never ran (caller cut the call early, no
+  // real conversation) — the report must still show WHAT HAPPENED, not fake data.
+  const turns = (call.transcript || []).length
+  const fallbackSummary =
+    call.status === 'failed' ? 'Call failed or was not answered — no conversation took place.'
+    : turns === 0 ? `Call ended without any conversation (${call.duration ? call.duration + 's' : 'duration unknown'}). Likely cut immediately or never connected.`
+    : `Caller disconnected after ${call.duration || '?'}s — only ${turns} turn(s) were spoken, too short for AI analysis.`
   return {
     callId: call.toObject(),
     collegeId: call.collegeId,
@@ -55,8 +62,8 @@ function reportFromCall(call) {
       twelfthPercent: col.class_12_score || col.marks_inter || null,
       entranceScore: col.entrance_score || col.graduation_score || '—',
     },
-    summary: call.summary || '',
-    enrollmentProbability: DISPO_PROBABILITY[disposition] ?? (call.status === 'completed' ? 60 : 30),
+    summary: call.summary || fallbackSummary,
+    enrollmentProbability: DISPO_PROBABILITY[disposition] ?? (call.status === 'completed' ? 60 : turns > 0 ? 30 : 10),
     topicAnalysis: topicScores(call.transcript || []),
     sentimentTimeline: [],
     followUpRecommendations: DISPO_FOLLOWUPS[disposition] || [],
@@ -97,10 +104,11 @@ router.get('/:callId', authenticate, async (req, res) => {
     const report = await Report.findOne({ callId: req.params.callId }).populate('callId')
     if (report) return res.json(report)
 
+    // Any real Call gets a report — even a cut/failed call with no transcript
+    // (the synthesized report then says honestly what happened). 404 only when
+    // the id isn't a call at all.
     const call = await Call.findById(req.params.callId)
-    if (!call || !(call.transcript || []).length) {
-      return res.status(404).json({ message: 'Report not found' })
-    }
+    if (!call) return res.status(404).json({ message: 'Report not found' })
     if (String(call.orgId) !== String(req.user.orgId)) {
       return res.status(403).json({ message: 'Forbidden' })
     }

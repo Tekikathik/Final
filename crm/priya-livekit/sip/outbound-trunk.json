@@ -1,9 +1,9 @@
 {
   "trunk": {
-    "name": "princesingh",
-    "address": "princesingh.pstn.twilio.com",
-    "numbers": ["+13502060176"],
-    "auth_username": "prince1",
-    "auth_password": "Prince841403@"
+    "name": "aditya-priya",
+    "address": "aditya-priya.pstn.twilio.com",
+    "numbers": ["+16693300739"],
+    "auth_username": "karthikk",
+    "auth_password": "Asdfghjkl12@"
   }
 }

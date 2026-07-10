@@ -111,7 +111,24 @@
       "Bash(node --check services/llm.js)",
       "Bash(node --check services/callAnalysis.js)",
       "Bash(grep -n 'aggregate\\\\|branchScopeFilter\\\\|ObjectId\\\\|$match\\\\|mongoose' backend/routes/crmAnalytics.js)",
-      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)"
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "Bash(grep -cE \"^GROQ_API_KEY=.+|^CEREBRAS_API_KEY=.+|^OPENROUTER_API_KEY=.+\" .env)",
+      "Bash(grep -oE \"^\\(GROQ_API_KEY|CEREBRAS_API_KEY|OPENROUTER_API_KEY\\)=\" .env)",
+      "Bash(node --check services/callLauncher.js)",
+      "Bash(curl -s https://openrouter.ai/api/v1/models)",
+      "Skill(dataviz)",
+      "Skill(dataviz:*)",
+      "Skill(artifact-design)",
+      "Skill(artifact-design:*)",
+      "Bash(node scripts/validate_palette.js \"#2a78d6,#1baf7a,#eda100\" --mode light)",
+      "Bash(node scripts/validate_palette.js \"#3987e5,#199e70,#c98500\" --mode dark)",
+      "mcp__claude_ai_higgsfield__media_upload",
+      "Bash(curl -s -X PUT -H \"Content-Type: image/jpeg\" --data-binary @placements-banner.jpg 'https://upload.higgsfield.ai/user_3G05PpfQ0TGUfsLsMaaSHqnmcq4/6d39ea51-b0c4-404a-89c7-1bb9da73b6ee.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAYPNTVMCG5GT6PLBD%2F20260710%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20260710T060818Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=content-type%3Bhost&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmV1LW5vcnRoLTEiRjBEAiBREuysoO7U1R%2BVwZIFfv8Ki8zRUvmCQtbt%2FdHmyjUxZgIgBF8NV4PlmHFWasIBzcgQEacGNlIU5Xuvp0GGXbKqwXoqsAUIrv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw1ODI4ODE3MzA3MDEiDM9bHkw%2F4KTxTIPmeCqEBR0Z4fOTM45TxR2ETh3ruOZYtxNnTB5Ug7uWOXLYr6ByksWZMlYhlDcvKjtvFIcMjNSxlhFCwoUMSHAyUyZ8pj9%2BLDJUtDPy2D8VWre%2BNYYK1KaN8c382bjEO4D0TPP0ajiWEObcsnh7ZLM%2FGUcby1PKLNWO87bL3OdZM40xqAWcQwll3B0CQ12qHGI9JnVOHkJPu4a8I7oDGr1br713p1%2B1yj8lM%2FXEoerugQ%2FQhEgrh1opuXwGmu52yrpNRjtacQeZb6GJbTVmCRlBo604K%2Btfb0eF%2BB%2Bqk7W8CeXGfcnDjwjoC%2FS1bk91jWb6zKRARSDq%2FLd1LcmwuFS20dENLQaQDTDVqC%2Bf1efIaJgeGRxHSQDAIMqQDOBTzfo%2BlBFFCoiSfJ%2Ffld6R7m01VASP56%2ByFYwwu%2BjEtXarw5FvGnq4VQMhvpsH%2BYHy98dsHPbioHTjCyuiNhqaPFTgYt5Sa7gexcHCTKz913GPK58ChdF06Ju6G4thLFWDFMfP%2Bvekb4lAzy21t1RJ63miccIw9rZzbi%2FedbIKACrIUgpB77X5NTe7%2BQYHgMOnkW9%2BrqmYSsqrgh8nD7jJ2pu0MCKIDI%2FNAa4pWGVtHSRIMaWU4X7fW%2F5U0JQgob7Y7X20O6Y4xb8aX%2BXs9RM3N5qlQ%2FaIlzdrlyzi0pgMfvH8uUUG6Y%2Bw4y1jHqIaJVHitXRmdv3vxWn%2Bu%2BYuav9ozP1UXdbK2VOdVoN9Uf5sLQl4KZBoBIV2tZnAUQo1AMf%2FUCvJUNTywM8ZmCJdGcscoUjPJVbrA3sh9ZDFHSSudJbO7ULBziLskuN7uPEAZAtvFN5eMZ9kiGo1sQm%2BNGt%2FYC6TrrOfnbWavgJOMI39wdIGOpEBPdZuzuOmKqNt7mjuyIRCLXzqGQpH2NpKeAhm7DfffM7MkVXVhQ0upBNsiCj7qA7tnFGfr%2FqDmjSNkke6DUH2Ptinu%2B8CnW4t7KFRWbhqXJNeg30uW2ROXbbbpPub1z778RoNwcHjsYcRaCU0aaIFs6tdzfbT0uHt6bpmA82O6x6DzSNQ3qO3dA48HPbtWK69%2Fw%3D%3D&X-Amz-Signature=78b52aa9fcbc7a5352af2642c761888397cf493b0831de76de6c83c08436632d' -w \"upload status=%{http_code}\\\\n\" -o /dev/null)",
+      "mcp__claude_ai_higgsfield__media_confirm",
+      "Bash(curl -s -o /dev/null -w \"status=%{http_code} type=%{content_type} size=%{size_download}\\\\n\" \"https://d2ol7oe51mr4n9.cloudfront.net/user_3G05PpfQ0TGUfsLsMaaSHqnmcq4/6d39ea51-b0c4-404a-89c7-1bb9da73b6ee.png\")",
+      "Bash(node --check backend/routes/reports.js)",
+      "Bash(node --check backend/services/callLauncher.js)",
+      "Bash(npx --yes esbuild --loader:.jsx=jsx src/pages/StudentReport/index.jsx --outdir=/tmp/esb-sr --log-level=error)"
     ],
     "additionalDirectories": [
       "e:\\Final - Copy\\middleware"

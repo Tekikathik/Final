@@ -1,5 +1,99 @@
 [
   {
+    "session_id": "f613a109-d4d8-4caa-a50d-138d0742de3d",
+    "phone": "+918249776759",
+    "name": "కార్టీక్",
+    "started_at": "2026-07-09T15:14:02.351Z",
+    "duration": 149,
+    "steps_completed": 1,
+    "status": "completed",
+    "detected_language": "te-IN",
+    "collected": {
+      "name": "కార్టీక్",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null,
+      "student_name": "కార్టీక్"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hello! This is Priya from Aditya University, calling about your admission enquiry. Is this a good time?",
+        "timestamp": "2026-07-09T15:14:18.034Z"
+      },
+      {
+        "role": "Student",
+        "text": "ఆ తెలుగు.",
+        "timestamp": "2026-07-09T15:14:22.626Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Absolutely, I speak Telugu—let's continue in your language.May I know your name, please?",
+        "timestamp": "2026-07-09T15:14:31.784Z"
+      },
+      {
+        "role": "Student",
+        "text": "ఆ నా పేరు కార్తీక్.",
+        "timestamp": "2026-07-09T15:14:36.024Z"
+      },
+      {
+        "role": "Priya",
+        "text": "కార్టీక్ గారు, మీరు ఏ B.Tech బ్రాంచ్‌లో ఆసక్తి చూపిస్తున్నారు?",
+        "timestamp": "2026-07-09T15:14:42.496Z"
+      },
+      {
+        "role": "Student",
+        "text": "నాకు లైక్ బీటెక్ ఫీల్డ్ లో ఇంట్రెస్ట్ ఉంది.",
+        "timestamp": "2026-07-09T15:14:49.916Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have Computer Science (CSE), Electronics & Communication (ECE), Mechanical, Civil, and more—any of these catch your interest?",
+        "timestamp": "2026-07-09T15:15:05.970Z"
+      },
+      {
+        "role": "Student",
+        "text": "అంటే లైక్ నాకు సీఎస్ఈ ఫీల్డ్ లో ఎక్కువ ఇంట్రెస్ట్ ఉంది.",
+        "timestamp": "2026-07-09T15:15:13.067Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great choice, Kartik! Within CSE, we offer core CSE, Data Science, SAP‑partnered, and Google Cloud tracks—any of these you’d like to explore?",
+        "timestamp": "2026-07-09T15:15:27.411Z"
+      },
+      {
+        "role": "Student",
+        "text": "అంటే నాకు",
+        "timestamp": "2026-07-09T15:15:34.976Z"
+      },
+      {
+        "role": "Student",
+        "text": "అంటే సిఎస్సిలో ఏ ఏ ప్రోగ్రామ్స్ మీరు చెప్తారో కొంచెం చెప్పగలరా? అంటే ఏ ఏ ప్రోగ్రామ్స్ మీ దగ్గర ఉన్నాయి.",
+        "timestamp": "2026-07-09T15:15:40.736Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have core CSE, CSE Data Science, CSE with SAP partnership, and CSE with Google Cloud—each leading to a B.Tech degree. Which one interests you most?",
+        "timestamp": "2026-07-09T15:15:55.625Z"
+      },
+      {
+        "role": "Student",
+        "text": "PSU విత్ AML ఉందా లేదా?",
+        "timestamp": "2026-07-09T15:16:00.266Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Do you have any entrance exam scores, like JEE or our ASAT, that we can note for scholarship eligibility?",
+        "timestamp": "2026-07-09T15:16:10.526Z"
+      }
+    ],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
     "session_id": "7a877051-2fed-47d8-8a8f-aa06c35ff50e",
     "phone": "+918249776759",
     "name": "New Contact",
@@ -112,10 +206,10 @@
         "timestamp": "2026-07-09T12:57:57.296Z"
       }
     ],
-    "summary": null,
-    "disposition": null,
-    "sentiment": null,
-    "interested": null
+    "summary": "Priya introduced herself and asked about the student's program interest. The student expressed interest in B.Tech Computer Science, asked about specializations and industry associations, and inquired about fee structures.",
+    "disposition": "interested",
+    "sentiment": "neutral",
+    "interested": true
   },
   {
     "session_id": "66939072-bc8e-4403-8261-d31869bb119d",
@@ -694,10 +788,10 @@
         "timestamp": "2026-07-08T12:14:36.033Z"
       }
     ],
-    "summary": null,
-    "disposition": null,
-    "sentiment": null,
-    "interested": null
+    "summary": "Priya introduced herself and asked about Prince's interests. Prince expressed interest in B.Tech CSE, asked about fees and hostel facilities, and requested a campus visit, which was scheduled for 2 August.",
+    "disposition": "interested",
+    "sentiment": "positive",
+    "interested": true
   },
   {
     "session_id": "2387c940-15c3-4f7a-831f-23a8acf1e231",
@@ -850,10 +944,10 @@
         "timestamp": "2026-07-04T13:03:49.039Z"
       }
     ],
-    "summary": null,
-    "disposition": null,
-    "sentiment": null,
-    "interested": null
+    "summary": "Priya introduced herself and asked about Prince's interest in B.Tech Computer Science, eligibility, and exam details. Prince provided his academic percentages, location in Bihar, and expressed interest in a campus visit.",
+    "disposition": "interested",
+    "sentiment": "positive",
+    "interested": true
   },
   {
     "session_id": "beccb163-6897-4f91-b7d1-34309569592d",
@@ -1106,10 +1200,10 @@
         "timestamp": "2026-07-03T16:29:38.879Z"
       }
     ],
-    "summary": null,
-    "disposition": null,
-    "sentiment": null,
-    "interested": null
+    "summary": "Rahul Sharma expressed interest in a B.Tech Computer Science program, provided his academic scores, and asked about fees, scholarships, and bus facilities from Ameerpet. The conversation ended with him stating he had no more questions.",
+    "disposition": "interested",
+    "sentiment": "neutral",
+    "interested": true
   },
   {
     "session_id": "c1075135-0ee8-4f74-9105-8f261097ef10",
@@ -1362,10 +1456,10 @@
         "timestamp": "2026-07-03T03:05:05.806Z"
       }
     ],
-    "summary": null,
-    "disposition": null,
-    "sentiment": null,
-    "interested": null
+    "summary": "The student Rahul Sharma provided his academic scores, expressed interest in B.Tech Computer Science, asked about fees, scholarships, and bus facilities, and concluded with no further questions.",
+    "disposition": "interested",
+    "sentiment": "neutral",
+    "interested": true
   },
   {
     "session_id": "3436576a-6988-4c7a-8297-0d297c28cff6",
@@ -5706,16 +5800,6 @@
     "name": "Rahul Sharma",
     "started_at": "2026-06-13T07:55:18.007Z",
     "duration": 66,
-    "steps_completed": 8,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "049c6aa1-387d-4d27-ae43-a41384bfc234",
-    "phone": "+918249776759",
-    "name": "Rahul Sharma",
-    "started_at": "2026-06-13T07:40:55.597Z",
-    "duration": 65,
     "steps_completed": 8,
     "status": "completed",
     "detected_language": "en-IN"

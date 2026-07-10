@@ -88,8 +88,23 @@ async function analyzeAndStore(sessionId) {
   const session = sessionStore.get(sessionId)
   if (!session || session.summary) return                  // gone or already analyzed
   if ((session.transcript || []).length < 2) return        // no real conversation to analyze
-  const out = await analyzeCall({ transcript: session.transcript })
-  if (!out.analyzed) return                                // all LLM providers down — leave blank
+
+  // Retry on TRANSIENT provider failure (e.g. Groq 401 + Cerebras 429 + OpenRouter hiccup all
+  // landing in the same few-second window). Without this, one bad window left the report with no
+  // summary/disposition forever. Backoff so a rate-limited provider has time to recover.
+  let out = null
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    out = await analyzeCall({ transcript: session.transcript })
+    if (out.analyzed) break
+    if (attempt < 4) {
+      console.warn(`[Priya] post-call analysis attempt ${attempt}/4 failed — retrying in ${attempt * 3}s`)
+      await new Promise(r => setTimeout(r, attempt * 3000))   // 3s, 6s, 9s
+    }
+  }
+  if (!out || !out.analyzed) {
+    console.error('[Priya] post-call analysis failed after 4 attempts — report will fall back to a generated summary')
+    return
+  }
   sessionStore.update(sessionId, {
     summary:     out.summary,
     disposition: out.disposition,
@@ -124,7 +139,8 @@ async function syncSessionToCall(sessionId) {
     call.transcript = (s.transcript || []).map(t => ({ role: t.role, text: t.text, timestamp: new Date(t.timestamp) }))
     call.collected = { ...(s.collected || {}) }
     call.markModified('collected')
-    call.status = s.status === 'completed' ? 'completed' : call.status
+    call.status = s.status === 'completed' ? 'completed'
+      : s.status === 'failed' ? 'failed' : call.status
     if (s.duration != null) call.duration = s.duration
     call.endedAt = call.endedAt || new Date()
     call.connected = true
@@ -208,6 +224,12 @@ async function runMockSimulation(sessionId) {
       try { await analyzeAndStore(sessionId) }
       catch (e) { console.warn('[MockSim] post-call analysis failed:', e.message) }
       await syncSessionToCall(sessionId)
+      // WhatsApp follow-up with the placement proof — same as real LiveKit calls
+      // (those fire it from /api/priya/agent-event on status=completed).
+      try {
+        const { sendPostCallFollowUp } = require('./postCallFollowup')
+        await sendPostCallFollowUp(sessionStore.get(sessionId))
+      } catch (e) { console.warn('[MockSim] follow-up message failed:', e.message) }
     }
   } catch (err) {
     console.error('[MockSim] Fatal error:', err.message)

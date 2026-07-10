@@ -20,12 +20,14 @@ function getTwilio() {
 const providers = {
   whatsapp: {
     configured: () => Boolean(getTwilio() && process.env.TWILIO_WHATSAPP_FROM),
-    async send(to, message) {
+    async send(to, message, _subject, mediaUrl) {
       const client = getTwilio()
       const msg = await client.messages.create({
         from: `whatsapp:${process.env.TWILIO_WHATSAPP_FROM}`,
         to:   `whatsapp:${to}`,
         body: message,
+        // Optional media (e.g. the placement-proof poster) — WhatsApp only.
+        ...(mediaUrl ? { mediaUrl: [mediaUrl] } : {}),
       })
       return { status: 'sent', detail: msg.sid }
     },
@@ -62,7 +64,7 @@ const PRIORITY = ['whatsapp', 'sms', 'email']
  * Send a message on a channel. If channel omitted, uses the first configured
  * provider by priority. Never throws — returns { channel, status, detail }.
  */
-async function send({ channel, to, email, message, subject }) {
+async function send({ channel, to, email, message, subject, mediaUrl }) {
   const order = channel ? [channel] : PRIORITY
   for (const ch of order) {
     const p = providers[ch]
@@ -75,7 +77,7 @@ async function send({ channel, to, email, message, subject }) {
     }
     if (!dest) return { channel: ch, status: 'skipped', detail: 'no destination' }
     try {
-      const r = await p.send(dest, message, subject)
+      const r = await p.send(dest, message, subject, mediaUrl)
       return { channel: ch, ...r }
     } catch (err) {
       console.warn(`[reminder:${ch}] failed:`, err.message)

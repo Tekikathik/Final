@@ -44,6 +44,10 @@ logging.getLogger("opentelemetry").setLevel(logging.CRITICAL)
 
 # ── Config from .env ─────────────────────────────────────────────────────────
 LLM_PROVIDER   = os.getenv("LLM_PROVIDER", "groq")          # "groq" | "local"
+# Nemotron (via OpenRouter) is far more verbose than the other models — it dumps bullet lists and
+# multi-sentence paragraphs. When it's the active model we append an extra, blunt style block.
+IS_NEMOTRON    = (LLM_PROVIDER == "openrouter"
+                  and "nemotron" in os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free").lower())
 SARVAM_SPEAKER = os.getenv("SARVAM_SPEAKER", "ritu")        # bulbul:v3 female voice
 TTS_LANGUAGE   = os.getenv("TTS_LANGUAGE", "te-IN")         # starting / fallback spoken language
 TTS_PACE       = float(os.getenv("TTS_PACE", "1.15"))
@@ -129,20 +133,14 @@ ACADEMIC_YEAR    = os.getenv("ACADEMIC_YEAR", "2026-27")
 DEFAULT_LANGUAGE = os.getenv("DEFAULT_LANGUAGE", "English")
 # Per-call: the prospect's name from the enquiry (blank in console testing).
 STUDENT_NAME     = os.getenv("STUDENT_NAME", "")
-# Course knowledge now lives in university_data.py and is served via lookup TOOLS (exact,
-# not RAG). The prompt tells Priya which tool to use for each kind of question.
+# Course knowledge lives in university_data.py, served via lookup TOOLS (exact, not RAG).
+# NOTE: kept SHORT on purpose — each tool already carries its own description in the tool
+# schema the model receives; re-listing them here doubled the prompt cost for no gain.
 KNOWLEDGE_BASE = (
-    "Do NOT answer factual questions from memory. Use these tools and speak ONLY what they return:\n"
-    "  • lookup_program(program) — degree, eligibility, accepted exams, fee, highlights of a course\n"
-    "  • get_fees(program) — tuition + admission/ASAT/hostel fees\n"
-    "  • check_scholarship(exam, score, program) — exact merit scholarship % from the slabs\n"
-    "  • list_branches() — the high-level B.Tech branches (CSE, ECE, EEE, Mechanical, Civil…); use FIRST\n"
-    "  • list_programs(category) — the SPECIALISATION tracks under a branch (e.g. 'CSE' → CSE, AI&ML, Data Science, SAP/Google/Microsoft tracks); use AFTER they pick a branch\n"
-    "  • get_placements(year) — placement stats & recruiters\n"
-    "  • get_university_info() — rankings, accreditation, location, contacts\n"
-    "  • get_facilities(topic) — hostel / medical / sports / safety / labs\n"
-    "If a tool says a value isn't available, tell the caller a counsellor will follow up. Never guess "
-    "fees, cutoffs, scholarships or placement numbers."
+    "Do NOT answer factual questions from memory — call the matching lookup tool and speak "
+    "ONLY what it returns. Branch flow: list_branches FIRST, then list_programs(branch) for "
+    "specialisations. If a tool says a value isn't available, tell the caller a counsellor "
+    "will follow up. Never guess fees, cutoffs, scholarships or placement numbers."
 )
 _student_ref = STUDENT_NAME or "the student who enquired with us"
 
@@ -185,8 +183,19 @@ def _keys_for(provider: str) -> list[str]:
     return out
 
 
-def _build_one(provider: str, api_key: str):
-    """A single OpenAI-compatible LLM for one provider, using the given API key."""
+def _models_for(provider: str) -> list:
+    """Models to build for a provider. OpenRouter may list SEVERAL (comma-separated in
+    OPENROUTER_MODEL) so its fallback tries each free Nemotron model in turn; every other
+    provider builds its single configured model."""
+    if provider == "openrouter":
+        raw = os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free")
+        return [m.strip() for m in raw.split(",") if m.strip()] or [None]
+    return [None]
+
+
+def _build_one(provider: str, api_key: str, model: str | None = None):
+    """A single OpenAI-compatible LLM for one provider, using the given API key (and, for
+    OpenRouter, a specific model)."""
     if provider == "local":
         return openai.LLM(
             model=os.getenv("LOCAL_MODEL", "qwen2.5:3b"),
@@ -215,7 +224,7 @@ def _build_one(provider: str, api_key: str):
         # reasoning MUST be disabled for Nemotron 3 on live calls — measured: reasoning
         # off = 1.0s with a clean tool call; reasoning on = 44s with mangled tool JSON.
         return openai.LLM(
-            model=os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free"),
+            model=model or os.getenv("OPENROUTER_MODEL", "nvidia/nemotron-3-super-120b-a12b:free").split(",")[0].strip(),
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key, temperature=0.6,
             max_completion_tokens=MAX_REPLY_TOKENS,
@@ -238,19 +247,25 @@ def build_llm():
         logger.warning(f"unknown LLM_PROVIDER '{LLM_PROVIDER}' — defaulting to groq")
 
     order = [LLM_PROVIDER]
-    fb = os.getenv("LLM_FALLBACK", "").strip().lower()
-    if fb and fb != LLM_PROVIDER:
-        order.append(fb)
+    # LLM_FALLBACK may be comma-separated (e.g. "groq,openrouter") — add each in order, deduped.
+    for fb in os.getenv("LLM_FALLBACK", "").strip().lower().split(","):
+        fb = fb.strip()
+        if fb and fb not in order:
+            order.append(fb)
 
     instances, labels = [], []
     for prov in order:
         if prov not in {"groq", "gemini", "cerebras", "openrouter", "local"}:
             continue
+        models = _models_for(prov)   # >1 for OpenRouter (tries each Nemotron model in turn)
         for idx, key in enumerate(_keys_for(prov), 1):
-            try:
-                instances.append(_build_one(prov, key)); labels.append(f"{prov}#{idx}")
-            except Exception as e:  # noqa: BLE001
-                logger.warning(f"LLM {prov}#{idx} unavailable ({e}); skipping")
+            for m in models:
+                try:
+                    instances.append(_build_one(prov, key, m))
+                    tag = f"{prov}#{idx}" + (f"({m.split('/')[-1].replace(':free', '')})" if m else "")
+                    labels.append(tag)
+                except Exception as e:  # noqa: BLE001
+                    logger.warning(f"LLM {prov}#{idx} ({m or 'default'}) unavailable ({e}); skipping")
 
     if not instances:   # nothing configured → last-ditch groq attempt so we fail loudly, not silently
         return _build_one("groq", os.getenv("GROQ_API_KEY", ""))
@@ -363,6 +378,27 @@ call_outcome (interested|callback|not_interested)
     .replace("{{language_block}}", LANGUAGE_BLOCK) \
     .replace("{{student_name}}", _student_ref) \
     .replace("{{course_knowledge_base}}", KNOWLEDGE_BASE)
+
+# ── Nemotron-only style override ─────────────────────────────────────────────
+# Nemotron ignores the softer style rules above — it writes paragraphs and dash/bullet lists
+# that get read aloud awkwardly and run 20-30s. This block is blunt and repetitive on purpose;
+# it's appended LAST (highest recency) only when Nemotron is the active model.
+NEMOTRON_STYLE = """
+
+# ⚠ HARD OUTPUT RULES — FOLLOW EXACTLY (you tend to over-explain; do NOT)
+- Reply in ONE spoken sentence, MAXIMUM 25 words, then STOP. Never two sentences of content.
+- ABSOLUTELY NO lists. No bullet points, no dashes ("-"), no numbered items, no "colon then a list",
+  no line breaks. These are a PHONE call — a list cannot be read aloud.
+- If you would list options, instead name only TWO or THREE in a natural sentence and offer more:
+  e.g. "We have core CSE, Data Science, and an SAP-partnered track — shall I tell you about those?"
+- NEVER say a filler like "Let me get the list/details for you" and then dump it. Just answer in one
+  sentence, or call the tool and speak only the ONE thing they asked about.
+- Do NOT begin every reply with "Great!" / "Excellent!" / "Great question!" — vary it, and usually
+  skip it. Get to the point warmly.
+- Exactly ONE question per turn, then wait. Never write or imagine the caller's reply.
+"""
+if IS_NEMOTRON:
+    INSTRUCTIONS = INSTRUCTIONS + NEMOTRON_STYLE
 
 
 # Fixed opening line — spoken in full, first, before anything else. A fixed string
@@ -630,6 +666,16 @@ class Priya(Agent):
             await stream.aclose()
 
     async def tts_node(self, text, model_settings):
+        # Open the Sarvam TTS websocket NOW, in the background, while the LLM is still
+        # streaming and mayura is translating the first sentence. Without this, the
+        # connect+config handshake (~0.1-0.25s) only started AFTER the translated text
+        # arrived — serial cost on every reply whose pooled connection had gone idle.
+        # prewarm() is a no-op when a live pooled connection already exists.
+        try:
+            self.tts.prewarm()
+        except Exception as e:  # noqa: BLE001
+            logger.debug(f"tts prewarm skipped: {e}")
+
         # Translate-out is active only when enabled AND the caller's language is non-English.
         needs_translation = TRANSLATE_OUT and bool(self._lang) and not self._lang.lower().startswith("en")
         # Hard spoken-length cap per turn so a verbose reply can't become a 20-30s monologue
@@ -715,10 +761,9 @@ class Priya(Agent):
     # ── Tools (port more from the Node agentTools.js as you need them) ────────
     @function_tool()
     async def save_detail(self, context: RunContext, field: str, value: str):
-        """Save one collected detail (only with a real value from the caller). fields:
-        student_name, program_of_interest, specialization, program_duration, entrance_exams_taken,
-        willing_university_exam, engagement_choice, counselling_mode, class_10_score, class_12_score,
-        graduation_score, graduation_status, current_city, questions_asked, follow_up_required, call_outcome."""
+        """Save one collected detail, only with a real value from the caller.
+        `field` = one of the DATA TO COLLECT keys in your instructions (e.g. student_name,
+        program_of_interest, visit_datetime, call_outcome)."""
         v = str(value or "").strip()
         if not v or v.lower() in {"not provided", "not given", "unknown", "n/a", "na",
                                    "none", "null", "tbd", "-"}:
@@ -849,10 +894,17 @@ async def entrypoint(ctx: JobContext):
         turn_handling={
             "turn_detection": "stt",   # Sarvam STT emits start/end-of-speech (Telugu-aware — keep)
             "endpointing": {"min_delay": float(os.getenv("EOU_MIN_DELAY", "0.2"))},  # end-of-turn wait (0.2 = latency trim; 0.15 = aggressive, may clip slow talkers)
-            # Preemptive generation OFF: drafting on the interim transcript and restarting on
-            # the final one makes the spoken audio overlap/cut ("breaking"). Off = one clean
-            # reply per turn.
-            "preemptive_generation": {"enabled": False},
+            # Preemptive generation ON (LLM only): drafting starts while the endpointing
+            # delay is still running, hiding most of the LLM TTFT behind the ~1s Sarvam
+            # transcript finalization we're paying anyway (~0.5-1s off every turn).
+            # preemptive_tts stays FALSE — audio synthesis only starts once the turn is
+            # confirmed, which is what prevented the old "overlapping/cut audio" problem
+            # that led to this being disabled before llm_node did the reply cleaning.
+            # Set PREEMPTIVE_GENERATION=false to switch back if artifacts return.
+            "preemptive_generation": {
+                "enabled": os.getenv("PREEMPTIVE_GENERATION", "true").lower() != "false",
+                "preemptive_tts": False,
+            },
             # Barge-in ON: the caller starts talking → Priya STOPS mid-sentence, listens,
             # replies, and the flow continues. It used to be fully off (phone echo of Priya's
             # own voice interrupted her) — but off means the session DROPS every user turn

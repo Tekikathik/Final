@@ -150,7 +150,7 @@ export default function StudentReport() {
             .catch(() => {})
         }
       })
-      .catch(() => setReport(MOCK_REPORT))
+      .catch(() => setReport(null))   // no fake data — show the honest empty state below
       .finally(() => setLoading(false))
   }, [callId])
 
@@ -164,7 +164,27 @@ export default function StudentReport() {
     )
   }
 
-  const r = report || MOCK_REPORT
+  // Report genuinely unavailable (unknown id / backend down) — say so instead of
+  // rendering demo data that looks like a real call.
+  if (!report) {
+    return (
+      <DashboardLayout>
+        <div style={{ maxWidth: 640, margin: '80px auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 20, fontWeight: 600, color: INK }}>Report not available</h2>
+          <p style={{ color: INK_MUTED, fontSize: 14, lineHeight: 1.6 }}>
+            No call record was found for this id. If the call just ended, wait a few seconds and refresh —
+            the transcript and AI summary are saved as the call closes.
+          </p>
+          <button onClick={() => window.location.reload()}
+            style={{ marginTop: 12, background: SAGE, color: '#fff', border: 'none', borderRadius: 10, padding: '9px 18px', fontSize: 13.5, fontWeight: 600, cursor: 'pointer' }}>
+            Refresh
+          </button>
+        </div>
+      </DashboardLayout>
+    )
+  }
+
+  const r = report
   const prob = r.enrollmentProbability
   const probLabel = prob >= 70 ? 'High' : prob >= 40 ? 'Medium' : 'Low'
 
