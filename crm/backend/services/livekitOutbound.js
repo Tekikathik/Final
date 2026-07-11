@@ -42,7 +42,8 @@ function assertConfigured() {
  * Returns a Twilio-call-like shape ({ sid }) so trigger-call can treat the room
  * name as the call id and map it back to the session.
  */
-async function makeOutboundCall({ to, sessionId, name, language, style, audience, gender }) {
+async function makeOutboundCall({ to, sessionId, name, language, style, audience, gender,
+                                  followup = false, collected = null, lastSummary = '' }) {
   assertConfigured()
 
   const host   = livekitHost()
@@ -65,6 +66,11 @@ async function makeOutboundCall({ to, sessionId, name, language, style, audience
     style:              style    || 'modern_colloquial',
     audience:           audience || 'international',
     gender:             gender   || 'Female',
+    // Re-engagement context — the agent greets warmly with what it already knows
+    // (name/program/scores), never re-collects, and works on the student's concerns.
+    followup:           Boolean(followup),
+    collected:          collected || undefined,
+    last_summary:       lastSummary || undefined,
   })
 
   console.log('[LiveKit] >>> dispatching', AGENT_NAME, 'to room', room, '| calling', to)

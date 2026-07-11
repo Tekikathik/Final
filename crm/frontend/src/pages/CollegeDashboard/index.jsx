@@ -84,28 +84,36 @@ export default function CollegeDashboard() {
     if (!numbers.length) return
     setCallingActive(true)
     const BATCH = 5
-    let done = 0
-    setTriggerStatus(`Triggering ${numbers.length} Priya AI calls (${BATCH} at a time)…`)
+    let real = 0, mock = 0, failed = 0
+    setTriggerStatus(`Triggering ${numbers.length} Priya AI call(s)…`)
 
     for (let i = 0; i < numbers.length; i += BATCH) {
       const batch = numbers.slice(i, i + BATCH)
-      await Promise.allSettled(batch.map(n => {
+      const results = await Promise.allSettled(batch.map(n => {
         const digits = String(n.phone || '').replace(/\s+/g, '').replace(/^\+?91/, '').replace(/^0/, '')
         const phone  = digits ? `+91${digits}` : n.phone
         return priyaTriggerCall({ phone, name: n.name || 'Student' })
-          .catch(err => console.warn('[BulkTrigger] failed:', phone, err.message))
       }))
-      done += batch.length
-      setTriggerStatus(`Calls triggered: ${Math.min(done, numbers.length)} / ${numbers.length}`)
+      for (const r of results) {
+        if (r.status === 'fulfilled') { r.value?.mock ? mock++ : real++ }
+        else { failed++; console.warn('[BulkTrigger] failed:', r.reason?.response?.data?.message || r.reason?.message) }
+      }
+      setTriggerStatus(`Dialing… ${real} ringing · ${mock} simulated · ${failed} failed`)
     }
 
-    setTriggerStatus(`✓ All ${numbers.length} Priya AI calls triggered! Calls will appear below as they complete.`)
-    // Refresh the calls list periodically so completed calls (and their reports)
-    // show up here without a manual refresh.
+    // Honest outcome — surface mock/failed instead of a blanket "✓ triggered".
+    if (failed && !real && !mock)
+      setTriggerStatus(`✗ All ${failed} call(s) failed to trigger — is the backend (npm run dev) running?`)
+    else if (mock && !real)
+      setTriggerStatus(`⚠ ${mock} call(s) ran in SIMULATION (no real dial). LiveKit/SIP not reachable — check the backend log.`)
+    else
+      setTriggerStatus(`✓ ${real} call(s) ringing now${mock ? `, ${mock} simulated` : ''}${failed ? `, ${failed} failed` : ''}. Answer your phone!`)
+
+    // Refresh the calls list periodically so completed calls (and reports) show up.
     fetchCalls(id)
     let ticks = 0
     const iv = setInterval(() => { fetchCalls(id); if (++ticks >= 18) clearInterval(iv) }, 10000)  // ~3 min
-    setTimeout(() => { setCallingActive(false); setTriggerStatus(null) }, 5000)
+    setTimeout(() => { setCallingActive(false); setTriggerStatus(null) }, 8000)
   }
 
   const stopCampaign = () => {

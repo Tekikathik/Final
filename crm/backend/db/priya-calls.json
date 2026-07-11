@@ -1,5 +1,734 @@
 [
   {
+    "session_id": "ad1ba29d-b58c-4d23-a84d-e41099e4b895",
+    "phone": "+918249776759",
+    "name": "Kartik",
+    "started_at": "2026-07-11T05:01:19.727Z",
+    "duration": 187,
+    "steps_completed": 11,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "Kartik",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": "B.Tech - CSE (Data Science)",
+      "location": null,
+      "student_name": "Kartik",
+      "program_of_interest": "B.Tech - CSE (Data Science)",
+      "questions_asked": "university exam details",
+      "call_outcome": "callback"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hello! This is Priya from Aditya University, calling about your admission enquiry. Is this a good time?",
+        "timestamp": "2026-07-11T05:01:36.784Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello Hello",
+        "timestamp": "2026-07-11T05:01:54.369Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Yes, I'm here! May I know your name, please?",
+        "timestamp": "2026-07-11T05:01:57.773Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, my name is Kartik.",
+        "timestamp": "2026-07-11T05:02:01.356Z"
+      },
+      {
+        "role": "Priya",
+        "text": "What program are you interested in, Kartik?",
+        "timestamp": "2026-07-11T05:02:05.465Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like I am interested in the",
+        "timestamp": "2026-07-11T05:02:11.671Z"
+      },
+      {
+        "role": "Student",
+        "text": "B.Tech field",
+        "timestamp": "2026-07-11T05:02:13.746Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We've got CSE, AI & ML, Data Science, ECE, Mechanical, Civil — and a few more. Which area interests you?",
+        "timestamp": "2026-07-11T05:02:23.315Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like I am very much interested in the data science.",
+        "timestamp": "2026-07-11T05:02:31.042Z"
+      },
+      {
+        "role": "Priya",
+        "text": "You've chosen B.Tech CSE with Data Science, Kartik. What exams have you taken or are you appearing for?",
+        "timestamp": "2026-07-11T05:02:41.142Z"
+      },
+      {
+        "role": "Student",
+        "text": "Until now I didn't appear any exam",
+        "timestamp": "2026-07-11T05:02:46.546Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Are you planning to take any entrance exams like JEE or will you take our university exam?",
+        "timestamp": "2026-07-11T05:02:54.497Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yeah, tell me what is the university exam?",
+        "timestamp": "2026-07-11T05:02:59.999Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Our university exam is ASAT, it's compulsory, but we also accept JEE, EAPCET, and CBSE scores.",
+        "timestamp": "2026-07-11T05:03:09.228Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay, but I want to ask you like",
+        "timestamp": "2026-07-11T05:03:20.924Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay, leave it, but I want the fee structures for all those things.",
+        "timestamp": "2026-07-11T05:03:21.801Z"
+      },
+      {
+        "role": "Priya",
+        "text": "The tuition fee for B.Tech CSE with Data Science is ₹2.00 lakh per year. Want the hostel and admission fees too?",
+        "timestamp": "2026-07-11T05:03:32.313Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay then, ha yes, tell me the hostel fee for girls.",
+        "timestamp": "2026-07-11T05:03:39.387Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like I want the fee structure for the girls hostel.",
+        "timestamp": "2026-07-11T05:03:52.143Z"
+      },
+      {
+        "role": "Priya",
+        "text": "The girls' hostel fee is ₹1.15 lakh per year for Non-AC and ₹1.30 lakh per year for AC.",
+        "timestamp": "2026-07-11T05:04:04.100Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay then",
+        "timestamp": "2026-07-11T05:04:11.037Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hmm",
+        "timestamp": "2026-07-11T05:04:12.759Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay then, I will be informing after some time.",
+        "timestamp": "2026-07-11T05:04:18.068Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Sure, take your time, Kartik. Feel free to call us back whenever you're ready. Have a great day!",
+        "timestamp": "2026-07-11T05:04:26.675Z"
+      },
+      {
+        "role": "Student",
+        "text": "Thank you",
+        "timestamp": "2026-07-11T05:04:29.812Z"
+      }
+    ],
+    "summary": "Priya introduced herself and asked about the student's interests, confirming interest in B.Tech CSE Data Science and providing fee details for tuition and girls' hostel. The student requested fee structures and said they would inform after some time.",
+    "disposition": "interested",
+    "sentiment": "neutral",
+    "interested": true
+  },
+  {
+    "session_id": "3d9a45e9-3c16-40b2-a51f-99e7c61c3945",
+    "phone": "+918249776759",
+    "name": "Kartik",
+    "started_at": "2026-07-11T04:48:28.529Z",
+    "duration": 145,
+    "steps_completed": 1,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "Kartik",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null,
+      "student_name": "Kartik"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hello! This is Priya from Aditya University, calling about your admission enquiry. Is this a good time?",
+        "timestamp": "2026-07-11T04:48:42.977Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, you can talk with me.",
+        "timestamp": "2026-07-11T04:48:47.331Z"
+      },
+      {
+        "role": "Priya",
+        "text": "May I know your name, please?",
+        "timestamp": "2026-07-11T04:48:49.948Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, my name is Kartik.",
+        "timestamp": "2026-07-11T04:48:54.044Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:49:07.485Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Nice to meet you, Kartik. Which program are you interested in for 2026-27?",
+        "timestamp": "2026-07-11T04:49:14.173Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, like, could you please tell me what are the programs did you offer?",
+        "timestamp": "2026-07-11T04:49:23.360Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have these main branches, shall I tell you about the specialisations under one of them?",
+        "timestamp": "2026-07-11T04:49:30.836Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, yes, you can.",
+        "timestamp": "2026-07-11T04:49:34.691Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have core CSE, Data Science, and tracks with SAP and Google Cloud, which one interests you?",
+        "timestamp": "2026-07-11T04:49:41.751Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, is there any MBA course available in your academy?",
+        "timestamp": "2026-07-11T04:49:51.370Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Yes, we offer MBA with specialisations like Business Analytics, FinTech, and more, would you like to know more about these?",
+        "timestamp": "2026-07-11T04:50:00.547Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes",
+        "timestamp": "2026-07-11T04:50:04.092Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Our MBA has specialisations and industry partnerships, the annual fee is ₹1.65 lakh, would you like to know about the scholarship?",
+        "timestamp": "2026-07-11T04:50:14.149Z"
+      },
+      {
+        "role": "Student",
+        "text": "உம்.",
+        "timestamp": "2026-07-11T04:50:18.084Z"
+      },
+      {
+        "role": "Priya",
+        "text": "What's",
+        "timestamp": "2026-07-11T04:50:21.092Z"
+      },
+      {
+        "role": "Student",
+        "text": "But okay, tell me this collection.",
+        "timestamp": "2026-07-11T04:50:21.352Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have these programs, would you like to visit our campus to know more?",
+        "timestamp": "2026-07-11T04:50:27.682Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes",
+        "timestamp": "2026-07-11T04:50:31.375Z"
+      }
+    ],
+    "summary": "Priya introduced herself and asked about the student's interests. The student inquired about program offerings, specifically MBA options, and expressed interest in learning more and visiting the campus.",
+    "disposition": "interested",
+    "sentiment": "neutral",
+    "interested": true
+  },
+  {
+    "session_id": "e17160d6-a122-4f9b-a209-362f86e2a2bd",
+    "phone": "+918249776759",
+    "name": "Kartik",
+    "started_at": "2026-07-11T04:40:33.782Z",
+    "duration": 207,
+    "steps_completed": 1,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "Kartik",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null,
+      "student_name": "Kartik"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hello! This is Priya from Aditya University, calling about your admission enquiry. Is this a good time?",
+        "timestamp": "2026-07-11T04:40:49.297Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, it is a good time.",
+        "timestamp": "2026-07-11T04:40:53.146Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:41:02.763Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great, thank you!",
+        "timestamp": "2026-07-11T04:41:05.386Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hmm",
+        "timestamp": "2026-07-11T04:41:05.568Z"
+      },
+      {
+        "role": "Priya",
+        "text": "May I know your name, please?",
+        "timestamp": "2026-07-11T04:41:09.676Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, my name is Kartik.",
+        "timestamp": "2026-07-11T04:41:13.491Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Nice to meet you, Kartik! Which program are you interested in — B.Tech, MBA, Pharmacy or Sciences?",
+        "timestamp": "2026-07-11T04:41:22.594Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, I want to join BBA. Is there any like course available in your university?",
+        "timestamp": "2026-07-11T04:41:33.541Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We offer BBA with Deloitte, Business Analytics with KPMG, Global Finance with PwC, FinTech with EY, and Health Care Management with Red Varsity — which one interests you?",
+        "timestamp": "2026-07-11T04:41:48.538Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, what are these like KPMG and what is this? I didn't understand anything. Could you please tell me more about this?",
+        "timestamp": "2026-07-11T04:41:59.817Z"
+      },
+      {
+        "role": "Priya",
+        "text": "That BBA is co-designed with KPMG — you get their curriculum, live analytics projects and KPMG certifications. Want me to explain the others briefly?",
+        "timestamp": "2026-07-11T04:42:11.657Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yeah",
+        "timestamp": "2026-07-11T04:42:15.768Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Deloitte track uses Harvard-style cases, Bajaj FinServ & TISS certifications, Big 4 live projects and executive mentorship.",
+        "timestamp": "2026-07-11T04:42:27.104Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay, then I want to like",
+        "timestamp": "2026-07-11T04:42:38.205Z"
+      },
+      {
+        "role": "Student",
+        "text": "Is there any like okay I want to join in this KPMG",
+        "timestamp": "2026-07-11T04:42:43.140Z"
+      },
+      {
+        "role": "Student",
+        "text": "After that, tell me what are the fee structures for all those things?",
+        "timestamp": "2026-07-11T04:42:43.995Z"
+      },
+      {
+        "role": "Priya",
+        "text": "KPMG BBA: tuition ₹1.65 lakh/year, admission fee ₹15,000, ASAT ₹500, hostel non-AC ₹1.15 lakh, AC ₹1.30 lakh. Want the other BBA fees too?",
+        "timestamp": "2026-07-11T04:43:01.611Z"
+      },
+      {
+        "role": "Student",
+        "text": "உம். Okay, then Okay I will be",
+        "timestamp": "2026-07-11T04:43:17.684Z"
+      },
+      {
+        "role": "Student",
+        "text": "confirm you for the seat confirmation So",
+        "timestamp": "2026-07-11T04:43:18.884Z"
+      },
+      {
+        "role": "Student",
+        "text": "Let it be",
+        "timestamp": "2026-07-11T04:43:21.349Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great, Kartik — shall we book a campus visit or virtual tour to lock in your seat?",
+        "timestamp": "2026-07-11T04:43:28.072Z"
+      }
+    ],
+    "summary": "Priya introduced the university and discussed BBA program options, explaining the KPMG partnership and fee structure. Kartik expressed interest in the KPMG BBA and asked about seat confirmation, with Priya offering a campus visit or virtual tour.",
+    "disposition": "interested",
+    "sentiment": "positive",
+    "interested": true
+  },
+  {
+    "session_id": "27a6021f-e1d9-4ced-9947-66d598d26844",
+    "phone": "+918249776759",
+    "name": "Kartik",
+    "started_at": "2026-07-11T04:25:51.918Z",
+    "duration": 331,
+    "steps_completed": 4,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "Kartik",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": "B.Tech - Computer Science & Engineering",
+      "location": null,
+      "student_name": "Kartik",
+      "program_of_interest": "B.Tech - Computer Science & Engineering",
+      "visit_datetime": "Saturday 5 PM",
+      "booked_time": "Saturday 5 PM"
+    },
+    "transcript": [
+      {
+        "role": "Priya",
+        "text": "Hello! This is Priya from Aditya University, calling about your admission enquiry. Is this a good time?",
+        "timestamp": "2026-07-11T04:26:14.245Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, it is a good time.",
+        "timestamp": "2026-07-11T04:26:18.666Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:26:34.305Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Wonderful! May I know your name, please?",
+        "timestamp": "2026-07-11T04:26:37.864Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, my name is Kartik.",
+        "timestamp": "2026-07-11T04:26:41.678Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Nice to meet you, Kartik! Which program are you interested in for 2026-27?",
+        "timestamp": "2026-07-11T04:26:51.990Z"
+      },
+      {
+        "role": "Student",
+        "text": "Just like I'm interested in like B.Tech.",
+        "timestamp": "2026-07-11T04:26:58.199Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We have CSE, ECE, EEE, Mechanical, Civil, and several more — which branch appeals to you most?",
+        "timestamp": "2026-07-11T04:27:06.465Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like I am very much interested in this CSC field.",
+        "timestamp": "2026-07-11T04:27:12.447Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:27:23.639Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great choice, Kartik! Which entrance exams have you taken or are appearing for — JEE, EAPCET, or any other?",
+        "timestamp": "2026-07-11T04:27:34.406Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like you should tell me what are the CSC program did you offer",
+        "timestamp": "2026-07-11T04:27:43.098Z"
+      },
+      {
+        "role": "Priya",
+        "text": "We offer core CSE, Data Science, and three industry tracks — SAP, Google Cloud, and Google Cloud Data Science — which one interests you most?",
+        "timestamp": "2026-07-11T04:27:53.105Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, is there any artificial intelligence course or not?",
+        "timestamp": "2026-07-11T04:28:00.573Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Yes — we have a dedicated B.Tech CSE (AI & ML) specialisation; would you like details on that?",
+        "timestamp": "2026-07-11T04:28:08.186Z"
+      },
+      {
+        "role": "Student",
+        "text": "Yes, I am interested for that. I want details of that.",
+        "timestamp": "2026-07-11T04:28:14.185Z"
+      },
+      {
+        "role": "Priya",
+        "text": "The B.Tech CSE (AI & ML) needs 60% in 12th, accepts JEE, EAPCET, ASAT, and costs ₹2.75 lakh per year. What are your Class 12 marks?",
+        "timestamp": "2026-07-11T04:28:30.343Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, my class 12th marks is around like 89%.",
+        "timestamp": "2026-07-11T04:28:38.639Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Excellent, 89% is a great score! Which entrance exams have you taken or are planning to take?",
+        "timestamp": "2026-07-11T04:28:49.404Z"
+      },
+      {
+        "role": "Student",
+        "text": "Like, I want to, I didn't appear in any entrance exam. I want to join through the management quota. So what are the fee structures and what is the process?",
+        "timestamp": "2026-07-11T04:29:03.201Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:29:19.900Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Annual tuition is ₹2.75 lakh, one-time admission fee ₹15,000, ASAT fee ₹500, and hostel ₹1.15–1.30 lakh per year. Management quota seats follow the same fee structure; our counsellor can guide you through the direct-admission process. Would you like a campus visit or virtual tour next?",
+        "timestamp": "2026-07-11T04:29:43.819Z"
+      },
+      {
+        "role": "Student",
+        "text": "Guys, I want to visit the campus, so",
+        "timestamp": "2026-07-11T04:29:50.007Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great, Kartik! When would suit you — say, Saturday morning?",
+        "timestamp": "2026-07-11T04:29:54.141Z"
+      },
+      {
+        "role": "Student",
+        "text": "I want to like Actually Thank you",
+        "timestamp": "2026-07-11T04:30:00.962Z"
+      },
+      {
+        "role": "Student",
+        "text": "Okay",
+        "timestamp": "2026-07-11T04:30:02.049Z"
+      },
+      {
+        "role": "Student",
+        "text": "Five",
+        "timestamp": "2026-07-11T04:30:02.840Z"
+      },
+      {
+        "role": "Student",
+        "text": "C M",
+        "timestamp": "2026-07-11T04:30:03.490Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Thanks, Kartik! I've noted Saturday 5 PM for your campus visit. Our team will confirm the exact details shortly. Anything else I can help with today?",
+        "timestamp": "2026-07-11T04:30:13.029Z"
+      },
+      {
+        "role": "Student",
+        "text": "No",
+        "timestamp": "2026-07-11T04:30:15.843Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Great, Kartik — your campus visit is confirmed for Saturday at 5 PM. We'll send a confirmation shortly. Have a great day!",
+        "timestamp": "2026-07-11T04:30:26.657Z"
+      },
+      {
+        "role": "Student",
+        "text": "Hello",
+        "timestamp": "2026-07-11T04:30:36.194Z"
+      },
+      {
+        "role": "Priya",
+        "text": "Hello Kartik! Nice to hear from you again. How can I help you today?",
+        "timestamp": "2026-07-11T04:30:41.344Z"
+      }
+    ],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "815e1661-0c51-4a6e-a38e-4c0421e559ed",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T14:47:02.351Z",
+    "duration": 30,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "851afa05-0611-4f85-ad82-e6e5bab324a0",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T14:41:44.940Z",
+    "duration": 29,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "634e9d1c-07f5-40b4-ac5f-75b6239f7fab",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T14:41:30.495Z",
+    "duration": 16,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "28cad41c-1cc5-43ad-9f75-480a920d7639",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T14:36:18.657Z",
+    "duration": 29,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "4f20639b-9290-468c-989d-86d2e64831fe",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T10:04:24.476Z",
+    "duration": 28,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
+    "session_id": "79b47298-4c8a-4363-b649-e564f072b2c3",
+    "phone": "+918249776759",
+    "name": "New Contact",
+    "started_at": "2026-07-10T09:59:26.095Z",
+    "duration": 26,
+    "steps_completed": 0,
+    "status": "completed",
+    "detected_language": "en-IN",
+    "collected": {
+      "name": "New Contact",
+      "marks_10": null,
+      "marks_inter": null,
+      "interest": null,
+      "location": null
+    },
+    "transcript": [],
+    "summary": null,
+    "disposition": null,
+    "sentiment": null,
+    "interested": null
+  },
+  {
     "session_id": "f613a109-d4d8-4caa-a50d-138d0742de3d",
     "phone": "+918249776759",
     "name": "కార్టీక్",
@@ -5701,106 +6430,6 @@
     "started_at": "2026-06-13T17:45:58.284Z",
     "duration": 109,
     "steps_completed": 1,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "c0483453-2288-4569-b6d1-6bd0e956dcfb",
-    "phone": "+918249776759",
-    "name": "Unknown",
-    "started_at": "2026-06-13T17:39:40.958Z",
-    "duration": 32,
-    "steps_completed": 0,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "0f228c4b-0fe2-4fac-949d-8e7bf7a4c3d7",
-    "phone": "+918249776759",
-    "name": "Unknown",
-    "started_at": "2026-06-13T17:14:56.030Z",
-    "duration": 122,
-    "steps_completed": 4,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "b4878f90-effc-47ca-9e74-146419d25f8c",
-    "phone": "+918249776759",
-    "name": "Unknown",
-    "started_at": "2026-06-13T13:18:07.329Z",
-    "duration": 49,
-    "steps_completed": 2,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "6f1b3c98-d914-4ab5-ae88-9b7d1645f64e",
-    "phone": "+918249776759",
-    "name": "Unknown",
-    "started_at": "2026-06-13T13:05:53.833Z",
-    "duration": 208,
-    "steps_completed": 8,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "9e8ea3bf-2d34-42ae-b309-d9e8da76778e",
-    "phone": "+918249776759",
-    "name": "Unknown",
-    "started_at": "2026-06-13T13:01:15.133Z",
-    "duration": 34,
-    "steps_completed": 0,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "0fafb381-6b0c-416b-a292-4ca8eea6760f",
-    "phone": "+918249776759",
-    "name": "Karthik",
-    "started_at": "2026-06-13T12:55:00.413Z",
-    "duration": 118,
-    "steps_completed": 3,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "a3030279-1ba6-4827-8c95-a3c25779c58f",
-    "phone": "+918249776759",
-    "name": "Kartik",
-    "started_at": "2026-06-13T12:39:27.957Z",
-    "duration": 91,
-    "steps_completed": 2,
-    "status": "completed",
-    "detected_language": "te-IN"
-  },
-  {
-    "session_id": "3077f26f-d57c-459f-acb1-1de1c7b8beee",
-    "phone": "+918249776759",
-    "name": "Karthik",
-    "started_at": "2026-06-13T09:04:35.378Z",
-    "duration": 103,
-    "steps_completed": 5,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "19829ce0-ded1-4989-aa90-c59dff9333b2",
-    "phone": "+918249776759",
-    "name": "Karthik",
-    "started_at": "2026-06-13T08:04:27.506Z",
-    "duration": 81,
-    "steps_completed": 4,
-    "status": "completed",
-    "detected_language": "en-IN"
-  },
-  {
-    "session_id": "dc851c7e-abd8-4b26-8dee-b6158f26a67c",
-    "phone": "+918249776759",
-    "name": "Rahul Sharma",
-    "started_at": "2026-06-13T07:55:18.007Z",
-    "duration": 66,
-    "steps_completed": 8,
     "status": "completed",
     "detected_language": "en-IN"
   }

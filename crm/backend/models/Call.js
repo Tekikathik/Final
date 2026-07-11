@@ -9,6 +9,8 @@ const callSchema = new mongoose.Schema({
   // Maps to the Priya/LiveKit session so transcript/status can be reconciled.
   sessionId: { type: String, default: null, index: true },
   campaignId: { type: String, index: true },
+  // Set on re-engagement calls: the earlier "interested" call this one follows up.
+  followUpOf: { type: mongoose.Schema.Types.ObjectId, ref: 'Call', default: null, index: true },
   phone: { type: String, required: true },
   name: { type: String, default: 'Unknown' },
   status: {

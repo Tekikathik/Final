@@ -247,6 +247,9 @@ async function launchOutboundCall({
   phone, name = '', preferredLanguage = null,
   style = 'modern_colloquial', audience = 'international',
   gender = 'Female', smartMode = false, sessionId = null,
+  // Re-engagement: { collected: {...prior call details}, lastSummary: 'AI summary' }
+  // → the agent opens warmly with what it knows instead of the cold first-call flow.
+  followUp = null,
 }) {
   // Normalise to E.164 +91XXXXXXXXXX format
   const digits = String(phone).trim().replace(/\s+/g, '').replace(/^\+?91/, '').replace(/^0/, '')
@@ -261,6 +264,9 @@ async function launchOutboundCall({
     style, audience, gender,
     smart_mode: Boolean(smartMode),
   })
+  // Seed the live session with what we already know, so the dashboard shows the
+  // student's details from second zero of a follow-up call.
+  if (followUp && followUp.collected) sessionStore.update(sid, { collected: { ...followUp.collected } })
 
   let callSid = null
   let mock = false
@@ -269,6 +275,9 @@ async function launchOutboundCall({
     const call = await outbound.makeOutboundCall({
       to: normalizedPhone, sessionId: sid, name: name || null,
       language: preferredLanguage, style, audience, gender,
+      followup: Boolean(followUp),
+      collected: followUp ? followUp.collected : null,
+      lastSummary: followUp ? followUp.lastSummary : '',
     })
     callSid = call.sid
     sessionStore.mapCallSid(callSid, sid)

@@ -310,21 +310,33 @@ expert advice, and motivate the next step (campus visit, virtual tour, or counse
   bright praise; a modest one gets encouragement like "That's a solid base, we can build on that")
   — always uplifting, never fake or over-the-top, and never mock a low score.
 - Sell with FACTS matched to their interest: weave in ONE real strength at a time (from tools), never a feature dump.
+- INDUSTRY PARTNERS ARE YOUR STRONGEST HOOK — never flatten them into "industry partnerships".
+  When a program's tool result carries a partner in its name (SAP, Google Cloud, Deloitte, KPMG,
+  EY, PwC, Microsoft), SAY the partner's name and what it means in one line: the partner co-designs
+  the curriculum and the student earns that company's certification. E.g. for MBA: "Business
+  Analytics is powered by KPMG, FinTech by EY, Global Finance by PwC — the Big Four themselves
+  design these courses." Named companies build trust; vague phrases sound like marketing.
 - Scholarship is your biggest hook: once you know their exam + score, praise the score, then call check_scholarship and tell them the exact % they'd get ("With that score you'd get X% scholarship — wonderful!").
 - REMEMBER what they already told you (see the "KNOWN ABOUT THIS CALLER" note). NEVER re-ask their program, name or scores. If they ask about fees, use their ALREADY-KNOWN program: call get_fees(that program), tell them the tuition, then ask "Is this fee comfortable for you, or shall I check your scholarship?" — never ask which program again.
 - Handle hesitation by acknowledging it and answering with a real fact (fees, scholarships, placements, hostel, safety).
 - Always drive to the next step with gentle urgency. Be 100% honest — never invent facts, figures or promises.
 
-# VOICE & STYLE (phone call)
-- Sound genuinely warm and friendly — like a caring senior who's happy to help, not a script-reader.
-  Smile through your words, use the caller's name often, and react naturally ("Oh nice!", "Great choice!",
-  "Don't worry, I'll help you with that"). Be human and encouraging, never flat or robotic.
-- Say ONE short thing, then STOP. Exactly ONE question per turn. Output only your own spoken line — never imagine the caller's reply.
-- Keep every reply under 25 words. NEVER write "..." or ellipses, and NEVER re-ask a question you have already asked — move to the next step instead.
+# VOICE & STYLE (phone call — sound like a PERSON, not a script)
+- Talk the way a friendly counsellor actually talks on the phone: contractions ("you'll", "it's"),
+  small natural connectors ("Sure", "Alright", "So", "Honestly"), an easy smile in the words.
+- Use their name SPARINGLY — two or three times in the whole call, never in consecutive replies.
+  Constant "Kartik!" every turn sounds like a telemarketer script.
+- VARY your reactions. Never start two replies in a row with the same word ("Great…", "Excellent…").
+  Sometimes skip the compliment entirely and just answer — that's what real people do.
+- Say ONE short thing, then STOP. At most ONE question per turn — and NOT every turn needs a
+  question. When you've just answered something they asked, it's fine to simply stop and let them react.
+- Keep every reply under 25 words. NEVER write "..." or ellipses, and NEVER re-ask a question you have already asked.
+- NUMBERS ARE HARD TO ABSORB BY EAR: never more than ONE ₹ figure per reply. Give the one they
+  asked for, then offer the rest ("Want the hostel and admission fees too?") instead of a data dump.
+- If the caller just says "Hello?" or "Are you there?", they think the line dropped — instantly say
+  "Yes, I'm here!" and repeat your last point in fewer words. Never treat it as a new topic or re-greet.
 - PLAIN spoken words only: no markdown, emojis, "Priya:" prefix, or parenthetical stage directions.
-- Warmly acknowledge each answer ("Thank you!", "Got it", "Perfect") and confirm important ones back before moving on.
 - For ANY fact (courses, fees, eligibility, exams, scholarships, placements, facilities, rankings) CALL THE TOOL and speak only what it returns; if unavailable, say a counsellor will follow up. Keep the call under ~5 minutes.
-- If a tool returns several figures, say only the one they asked about, then offer the rest ("Want the hostel fees too?").
 
 # OPENING
 1. The short greeting ("Is this a good time?") has ALREADY been spoken — never re-greet. If no/busy: offer a callback at a convenient time, thank them, end.
@@ -333,9 +345,14 @@ expert advice, and motivate the next step (campus visit, virtual tour, or counse
 # CONVERSATION FLOW (in order, natural; save_detail each answer)
 1. Their name — FIRST, right after they agree to talk ("May I know your name, please?"). save_detail(student_name); address them by it naturally through the call.
 2. Program of interest. If they're unsure or ask "what do you offer", FIRST call list_branches and
-   warmly share the main B.Tech branches (CSE, ECE, EEE, Mechanical, Civil…) — a short, friendly list.
+   SPEAK THE ACTUAL BRANCH NAMES — five or six of them in one natural breath: "We've got CSE,
+   AI & ML, Data Science, ECE, Mechanical, Civil — and a few more. Which area interests you?"
+   NEVER say "we have these branches" or "several options" without naming them — a caller can't
+   choose from a list they never heard. (The two LISTING turns — branches, and specialisations —
+   may run up to ~35 words; every other turn keeps the 25-word cap.)
    When they pick a branch (e.g. CSE), THEN call list_programs("CSE") and share that branch's
-   specialisations (core CSE, AI & ML, Data Science, and the SAP / Google Cloud / Microsoft tracks).
+   specialisations BY NAME with their partner: "core CSE, Data Science, and industry tracks
+   designed with SAP and Google Cloud."
    Confirm their exact choice back and save_detail(program_of_interest) + specialization.
 3. Entrance exams taken/appearing (name + status); praise any exam cleared or attempted; then ask if they'd take a {{university_name}} entrance exam.
 4. Academics: Class 10 %, Class 12 %, graduation score + status if applicable. APPRECIATE each score warmly as they say it ("That's a great percentage!") before asking the next.
@@ -347,13 +364,23 @@ expert advice, and motivate the next step (campus visit, virtual tour, or counse
 
 # PACING
 - ANSWER THE CALLER FIRST. If you just called a tool, SPEAK its result — never ignore their question to collect a detail.
+- STAY ON THEIR TOPIC until it's finished. Do NOT bolt the next checklist question onto every answer —
+  when they're asking about fees/quota/courses, resolve that fully first; the flow can wait a turn or two.
 - Ask the name EARLY — right after they agree to talk, BEFORE the program question; never re-ask. Collect other flow details naturally, one at a time — they're secondary to helping.
 - When the caller asks the fee/details of a SPECIFIC specialisation (e.g. "the SAP one", "CSE with Google Cloud", "Data Science"), pass THAT EXACT specialisation to get_fees / lookup_program — never substitute a different one. If unsure which they mean, ask them to confirm before quoting.
+- If the specialisation they ask about is NOT in the tool's list (e.g. a B.Tech AI&ML when only M.Tech
+  AI&ML exists), say so honestly and offer the CLOSEST real options — NEVER pretend it exists or quote
+  another program's fee as if it were that one.
 - Say the opening once, then move forward. Set call_outcome ONLY at the very end.
 - Call save_detail ONLY with a real value the caller gave — never blank or guessed. Never type a tool call as spoken text.
 
-# CLOSING
-Summarise the next step you arranged, thank them by name, end politely.
+# CLOSING (ending the call properly)
+- When they confirm there's nothing else: ONE short goodbye that repeats the arranged next step
+  ("See you Saturday at 5 then — thanks, and have a great day!"), and IMMEDIATELY call
+  save_detail(call_outcome=…) in the SAME turn — that is what actually ends the call.
+- NEVER speak again after your goodbye except: if the caller says something before the line drops,
+  answer in one short line and give a brief goodbye again. NEVER re-greet, NEVER ask
+  "How can I help you today?" after you have already said goodbye.
 
 # DATA TO COLLECT (save_detail as captured)
 student_name, program_of_interest, specialization, program_duration, entrance_exams_taken,
@@ -410,6 +437,24 @@ GREETING = (
     "calling about your admission enquiry. Is this a good time?"
 )
 
+# Appended to the prompt on a RE-ENGAGEMENT call (a lead who was interested earlier but hasn't
+# enrolled). We already know their details (seeded into "KNOWN ABOUT THIS CALLER"), so Priya
+# reconnects warmly, uncovers what's holding them back, and solves it — never starts from scratch.
+FOLLOWUP_BLOCK = """
+
+# THIS IS A FOLLOW-UP CALL (warm re-engagement — you have spoken before)
+You already spoke with this student earlier; their details are in "KNOWN ABOUT THIS CALLER". They
+were INTERESTED but haven't enrolled yet. Goal: reconnect warmly, find what's holding them back,
+solve it, and gently move them toward enrolling or booking a campus visit.
+- Open by referencing what you already know (their name + program) — do NOT re-collect name/program/scores.
+- Warmly ask if they have any questions or concerns since you last spoke.
+- Fee worry → proactively check their scholarship (check_scholarship) and share the exact %.
+- Unsure about the program → offer to explore other branches/specialisations that suit them (they CAN change).
+- Answer every concern with a real fact (scholarship, placements, hostel, safety) and reassure genuinely.
+- Be warm, patient and friendly — a caring mentor checking in, never pushy or salesy.
+- Close by inviting them to a campus visit or a counselling session, and confirm a day/time.
+"""
+
 
 # Safety net: some models (esp. smaller ones) LEAK tool calls as spoken text, e.g.
 #   <function=save_detail>{"field": "student_name", "value": "Karthik"}</function>
@@ -436,12 +481,19 @@ def _strip_tool_syntax(s: str) -> str:
 
 class Priya(Agent):
     def __init__(self, student_name: str = "", reporter: Reporter | None = None,
-                 job_ctx: JobContext | None = None) -> None:
+                 job_ctx: JobContext | None = None, collected: dict | None = None,
+                 followup: bool = False, last_summary: str = "") -> None:
         # Per-call personalisation injected from the CRM (via dispatch metadata): if we
         # already know the prospect's name, tell Priya so she greets them by it and skips
         # asking. Everything else (prompt, voice, tools) is unchanged.
+        self._followup = followup
         instructions = INSTRUCTIONS
-        if student_name:
+        if followup:
+            # Re-engagement: we already know this student — nurture, don't re-collect.
+            instructions += FOLLOWUP_BLOCK
+            if last_summary:
+                instructions += f"\n# LAST TIME YOU SPOKE\n{last_summary}\n"
+        elif student_name:
             instructions += (
                 f"\n\n# THIS CALL\nThe student's name is {student_name}. Greet and address them "
                 "by it naturally during the call; you do NOT need to ask for their name."
@@ -470,8 +522,10 @@ class Priya(Agent):
                 enable_cached_responses=True,  # repeated phrases (greeting etc.) come back instantly
             ),
         )
-        # In-memory collected fields for this call (port the full schema as needed).
-        self.collected: dict[str, str] = {}
+        # In-memory collected fields for this call. On a follow-up we seed these with what we
+        # already learned last time, so Priya knows the caller and the "KNOWN ABOUT THIS CALLER"
+        # note is populated from turn one (she never re-asks name/program/scores).
+        self.collected: dict[str, str] = {k: v for k, v in (collected or {}).items() if v}
         # Current voice language (updated by the multilingual handler); picks the filler language.
         self._lang: str = TTS_START_LANG
         # Pushes collected details to the dashboard as they're captured (no-op if standalone).
@@ -553,7 +607,19 @@ class Priya(Agent):
         # interruptible: if the caller talks over it ("hello? who is this?"), Priya stops
         # and responds — a false trigger (echo/noise) auto-resumes the greeting instead
         # of losing it (resume_false_interruption above).
-        await self.session.say(GREETING)
+        await self.session.say(self._greeting())
+
+    def _greeting(self) -> str:
+        """The opening line. A follow-up call reconnects warmly using what we already know
+        (name + program) instead of the cold first-call greeting."""
+        if not self._followup:
+            return GREETING
+        name = self.collected.get("student_name") or ""
+        prog = self.collected.get("program_of_interest") or self.collected.get("specialization") or ""
+        hi = f"Hello {name}!" if name else "Hello!"
+        about = f" We spoke recently about {prog}" if prog else " We spoke recently about your admission"
+        return (f"{hi} This is {AGENT_NAME} from {UNIVERSITY_NAME} again.{about}, "
+                "and I wanted to follow up. Is this a good time?")
 
     async def on_user_turn_completed(self, turn_ctx, new_message):
         # Bound the history sent to the LLM (system prompt is separate and kept). Keeps
@@ -875,10 +941,20 @@ async def entrypoint(ctx: JobContext):
                      "none", "null", "test", "caller"}
     student_name = "" if _raw_name.lower() in _PLACEHOLDERS else _raw_name
 
+    # Re-engagement (follow-up) context: on a weekly re-call the CRM sends what we already
+    # know (collected fields from the earlier call) + a flag + last call's summary, so Priya
+    # reconnects warmly and never starts from scratch.
+    prior_collected = meta.get("collected") if isinstance(meta.get("collected"), dict) else {}
+    is_followup     = bool(meta.get("followup"))
+    last_summary    = str(meta.get("last_summary") or "")
+    if is_followup and not student_name:
+        student_name = prior_collected.get("student_name") or ""
+
     reporter = Reporter(report_url, session_id)
     reporter.start()
 
-    agent = Priya(student_name=student_name, reporter=reporter, job_ctx=ctx)
+    agent = Priya(student_name=student_name, reporter=reporter, job_ctx=ctx,
+                  collected=prior_collected, followup=is_followup, last_summary=last_summary)
 
     # Sarvam handles VAD + turn detection internally — no separate vad / silero needed.
     session = AgentSession(
@@ -1019,6 +1095,15 @@ async def entrypoint(ctx: JobContext):
     # to the Node backend so the dashboard's TranscriptViewer updates in real time.
     # The greeting is added to chat history, so it's reported too; the per-turn fillers
     # use add_to_chat_ctx=False, so they're correctly skipped.
+    # Goodbye phrases that should end the call even when the LLM forgets to save
+    # call_outcome (observed: she said "Have a great day!" twice and the line stayed
+    # open until the caller hung up). _hang_up_after_closing waits for real quiet
+    # first, so a caller who keeps talking is still answered before any hangup.
+    _GOODBYE_RE = re.compile(
+        r"have a (great|good|nice|wonderful) (day|evening|week)|good\s?bye|bye[\s\-]?bye"
+        r"|take care|talk to you (soon|later)|शुभ दिन|अलविदा|ధన్యవాదాలు",
+        re.IGNORECASE)
+
     @session.on("conversation_item_added")
     def _on_item(ev):
         item = ev.item
@@ -1028,6 +1113,10 @@ async def entrypoint(ctx: JobContext):
         if text:
             reporter.emit(type="transcript", role=item.role, text=text,
                           detected_language=agent._lang)
+        # Backstop hang-up: Priya spoke a goodbye → wind the call down even if
+        # save_detail(call_outcome) was never called. Guarded inside the method.
+        if item.role == "assistant" and text and _GOODBYE_RE.search(text):
+            asyncio.create_task(agent._hang_up_after_closing())
 
     # ── Per-turn latency → latency_log.csv (chart with plot_latency.py) ─────────
     latency = LatencyTracker(session_id=session_id or ctx.room.name)

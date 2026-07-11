@@ -14,6 +14,7 @@ import {
 import DashboardLayout from '../../components/DashboardLayout'
 import { useStore } from '../../store/useStore'
 import { analyzeCall, listAppointments } from '../../lib/crmApi'
+import { reEngageOne } from '../../lib/priyaApi'
 
 import { SAGE, SAGE_DARK, SAGE_LIGHT, AMBER, AMBER_DARK, INK, INK_BODY, INK_MUTED, COLORS } from '../../theme'
 const TOOLTIP = { background: '#FFFFFF', border: '1px solid #E8E8E8', borderRadius: 10, color: INK, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }
@@ -96,6 +97,24 @@ export default function StudentReport() {
   const [loading, setLoading] = useState(true)
   const [shareToast, setShareToast] = useState(null)
   const [analyzing, setAnalyzing] = useState(false)
+  const [calling, setCalling] = useState(false)
+
+  // Click-to-call: Priya calls this student back NOW (warm follow-up with what she knows);
+  // the WhatsApp message is sent automatically AFTER that call completes.
+  const handleReEngage = async () => {
+    const phone = report?.profile?.phone
+    if (!phone) { setShareToast('No phone number on this report'); setTimeout(() => setShareToast(null), 2500); return }
+    setCalling(true)
+    try {
+      const r = await reEngageOne(phone)
+      setShareToast(r.ok ? `📞 Calling ${r.phone}…${r.mock ? ' (mock)' : ''}` : (r.message || 'Could not place the call'))
+    } catch (e) {
+      setShareToast(e?.response?.data?.message || 'Could not place the call')
+    } finally {
+      setCalling(false)
+      setTimeout(() => setShareToast(null), 3500)
+    }
+  }
   const [appts, setAppts] = useState([])
 
   // AI auto-analysis: re-run summary + disposition on this call's transcript.
@@ -239,6 +258,10 @@ export default function StudentReport() {
           <div style={{ display: 'flex', gap: 10 }}>
             <button className="pill-outline" onClick={handleShare}>
               <Share2 size={14} /> Share
+            </button>
+            <button className="pill-confirm" onClick={handleReEngage} disabled={calling}
+              style={{ background: calling ? '#9DB295' : SAGE_DARK, opacity: calling ? 0.7 : 1 }}>
+              <Phone size={14} /> {calling ? 'Calling…' : 'Call again'}
             </button>
             <button className="pill-confirm" onClick={() => window.open(`http://localhost:5000/api/reports/export/${callId}`)}>
               <Download size={14} /> Export Report

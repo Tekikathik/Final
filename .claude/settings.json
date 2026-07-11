@@ -130,7 +130,10 @@
       "Bash(npx --yes esbuild --loader:.jsx=jsx src/pages/StudentReport/index.jsx --outdir=/tmp/esb-sr --log-level=error)",
       "Bash(git add *)",
       "Bash(git commit -m 'Remove expired presigned upload URL from permission allowlist *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(PYTHONIOENCODING=utf-8 ./.venv/Scripts/python.exe -c \"import agent; print\\('agent OK, followup block present:', 'FOLLOW-UP CALL' in agent.FOLLOWUP_BLOCK\\)\")",
+      "Bash(node --check services/reEngagement.js)",
+      "Bash(grep -vE \"^.*//| require\\\\\\(\")"
     ],
     "additionalDirectories": [
       "e:\\Final - Copy\\middleware"

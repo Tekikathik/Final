@@ -210,6 +210,32 @@ async function mirrorToCrm(sessionId, type, body) {
 }
 
 // ---------------------------------------------------------------------------
+// POST /api/priya/reengage-sweep — run the re-engagement sweep NOW (testing /
+// manual trigger). Same logic the daily cron runs: interested-but-silent
+// students overdue by REENGAGE_AFTER_DAYS get a warm follow-up call.
+// ---------------------------------------------------------------------------
+router.post('/reengage-sweep', async (_req, res) => {
+  try {
+    const { runReEngagementSweep } = require('../services/reEngagement')
+    const placed = await runReEngagementSweep()
+    res.json({ ok: true, placed })
+  } catch (err) { res.status(500).json({ message: err.message }) }
+})
+
+// ---------------------------------------------------------------------------
+// POST /api/priya/reengage-one  { phone } — re-engage ONE number RIGHT NOW,
+// ignoring the 7-day gate. For "call this student back now" + testing on your
+// own mobile. Uses that number's most recent call for the known data.
+// ---------------------------------------------------------------------------
+router.post('/reengage-one', async (req, res) => {
+  try {
+    const { reEngagePhone } = require('../services/reEngagement')
+    const r = await reEngagePhone(req.body?.phone)
+    res.status(r.ok ? 200 : 404).json(r)
+  } catch (err) { res.status(500).json({ message: err.message }) }
+})
+
+// ---------------------------------------------------------------------------
 // GET /api/priya/sessions/:session_id
 // ---------------------------------------------------------------------------
 router.get('/sessions/:session_id', (req, res) => {

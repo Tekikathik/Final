@@ -10,6 +10,7 @@ const connectDB  = require('./config/db')
 const errorHandler = require('./middleware/errorHandler')
 const { startScheduler } = require('./services/scheduler')
 const { startCompetitiveSchedule } = require('./services/competitiveSchedule')
+const { startReEngagementSchedule } = require('./services/reEngagement')
 const { startMarketingSchedule } = require('./services/marketing/marketingSchedule')
 const mediaStream  = require('./services/mediaStream')
 // vectorStore auto-initialises on require (see services/vectorStore.js)
@@ -18,7 +19,7 @@ const app = express()
 
 // Connect DB, then start the cron scheduler. The scheduler relies on the
 // DB connection so we kick it off only after connectDB resolves.
-connectDB().then(() => { startScheduler(); startCompetitiveSchedule(); startMarketingSchedule() }).catch(err => console.error(err))
+connectDB().then(() => { startScheduler(); startCompetitiveSchedule(); startMarketingSchedule(); startReEngagementSchedule() }).catch(err => console.error(err))
 
 // Ensure the audio directory exists for Priya TTS files
 const audioDir = path.join(__dirname, 'audio')

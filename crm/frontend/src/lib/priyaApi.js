@@ -34,3 +34,10 @@ export async function getCall(sessionId) {
   const { data } = await client.get(`/calls/${sessionId}`)
   return data
 }
+
+/** Re-engage (call again) ONE number now — Priya calls back warmly with what she already
+ *  knows; the WhatsApp follow-up is sent automatically after that call completes. */
+export async function reEngageOne(phone) {
+  const { data } = await client.post('/reengage-one', { phone })
+  return data  // { ok, phone, callId?/sessionId?, via }
+}
